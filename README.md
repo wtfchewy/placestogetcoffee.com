@@ -1,7 +1,7 @@
 # Places to get Coffee
 > :warning: **Inspired by placestogetread.xyz**
 
-placestogetcoffee.com
+[placestogetcoffee.com](https://placestogetcoffee.com/)
 
 ### Stack
 - [Vite](https://vite.dev/)
