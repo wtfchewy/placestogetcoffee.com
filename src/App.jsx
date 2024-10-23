@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import Entry from './components/Entry'
-import Arrow from './components/Arrow'
+import Hero from './components/Hero'
 import Menu from './components/Menu'
 import { getShops } from './services/firestore'
 
@@ -85,19 +85,7 @@ function App() {
       {menu && <Menu setMenu={setMenu} />}
 
       <header className="text-mcqueen justify-between w-full px-4 pt-12 pb-16 mx-auto sm:flex max-w-screen-2xl">
-        <div>
-          <h1 className="font-medium text-5xl">
-            <a href="/">Places to get Coffee</a>
-          </h1>
-          <p className="max-w-md mt-1">
-            Coffee Shops around your area (50 miles) handpicked by the internet that are perfect to
-            sit down in and enjoy a coffee.
-          </p>
-            <a href="/about" className="flex items-center mt-4 gap-x-1 w-fit">
-              About
-              <Arrow />
-            </a>
-        </div>
+        <Hero />
         <div>
           <button onClick={() => setMenu(true)} className='px-2 py-1 border border-mcqueen hover:bg-mcqueen hover:text-white transition duration-75'>
             Submit a Coffee Shop
@@ -118,7 +106,7 @@ function App() {
         </thead>
         <tbody>
           {filteredEntries.map((entry, index) => (
-            <Entry key={entry.id} index={index + 1} name={entry.name} city={entry.city} rating={entry.rating} feature={entry.feature} latitude={entry.latitude} longitude={entry.longitude} />
+            <Entry key={entry.id} index={index + 1} name={entry.name} city={entry.city} rating={entry.rating} feature={entry.feature} latitude={entry.latitude} longitude={entry.longitude} url={entry.link}/>
           ))}
           
         </tbody>
