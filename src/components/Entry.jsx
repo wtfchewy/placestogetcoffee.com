@@ -2,7 +2,7 @@ import React from 'react';
 import Star from './Star';
 import Arrow from './Arrow';
 
-const Entry = ({ index, name, city, rating, feature, latitude, longitude }) => {
+const Entry = ({ index, name, city, rating, feature, latitude, longitude, url }) => {
 
   return (
     <tr className="hover:bg-sally/10 hover:cursor-pointer duration-75 transition">
@@ -28,12 +28,12 @@ const Entry = ({ index, name, city, rating, feature, latitude, longitude }) => {
           <p className="block font-regular text-regular text-mcqueen">{feature}</p>
         </td>
         <td className="p-4 border-b border-l border-mcqueen py-3">
-          <p className="flex flex-row justify-between tabular-nums items-center gap-2 font-regular text-regular fill-mcqueen hover:fill-white text-mcqueen bg-sally/50 rounded-sm px-2 hover:bg-mcqueen hover:text-white duration-75 transition">
+          <a href={url} className="flex flex-row justify-between tabular-nums items-center gap-2 font-regular text-regular fill-mcqueen hover:fill-white text-mcqueen bg-sally/50 rounded-sm px-2 hover:bg-mcqueen hover:text-white duration-75 transition">
           {latitude}, {longitude}
           <svg width='15' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
           </svg>
-          </p>
+          </a>
         </td>
     </tr>
   );
