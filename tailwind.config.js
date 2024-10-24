@@ -10,9 +10,9 @@ export default {
         'sans': ['Inter', 'sans-serif'],
       },
       colors: {
-        mcqueen: "#130ABC",
-        sally: "#cbc9fc",
-        white: "#EFEFE9"
+        mcqueen: "#B17457",
+        sally: "#D8D2C2",
+        white: "#FAF7F0"
       },
     },
   },

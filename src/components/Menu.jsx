@@ -20,7 +20,7 @@ const Menu = ({ setMenu }) => {
     }
 
     return (
-        <div className='absolute w-full h-screen bg-mcqueen/30 flex justify-center items-center'>
+        <div className='absolute w-full h-screen bg-mcqueen/10 flex justify-center items-center'>
         <div className='w-2/6 p-2 bg-white border-2 border-mcqueen text-mcqueen'>
           <div className='justify-between flex flex-row'>
           <h1 className='text-xl'>About You</h1>
