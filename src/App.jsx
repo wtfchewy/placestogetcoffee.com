@@ -6,6 +6,7 @@ import { getShops } from './services/firestore'
 
 function App() {
   const [entries, setEntries] = useState([])
+  const [userPermission, setUserPermission] = useState(false)
   const [filteredEntries, setFilteredEntries] = useState([])
   const [latitude, setLatitude] = useState(0)
   const [longitude, setLongitude] = useState(0)
@@ -31,9 +32,30 @@ function App() {
         (position) => {
           setLatitude(position.coords.latitude);
           setLongitude(position.coords.longitude);
+          setUserPermission(true);
         },
         (error) => {
-          console.error('Error getting geolocation:', error);
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              console.error('User denied the request for Geolocation.');
+              setUserPermission(false);
+              break;
+            case error.POSITION_UNAVAILABLE:
+              console.error('Location information is unavailable.');
+              setUserPermission(false);
+              break;
+            case error.TIMEOUT:
+              console.error('The request to get user location timed out.');
+              setUserPermission(false);
+              break;
+            case error.UNKNOWN_ERROR:
+              console.error('An unknown error occurred.');
+              setUserPermission(false);
+              break;
+            default:
+              console.error('An error occurred while retrieving location:', error);
+              setUserPermission(false);
+          }
         }
       );
     } else {
@@ -105,10 +127,19 @@ function App() {
             </tr>
         </thead>
         <tbody>
-          {filteredEntries.map((entry, index) => (
-            <Entry key={entry.id} index={index + 1} name={entry.name} city={entry.city} rating={entry.rating} feature={entry.feature} latitude={entry.latitude} longitude={entry.longitude} url={entry.link}/>
-          ))}
-          
+          {userPermission ? 
+            <>
+              {filteredEntries.map((entry, index) => (
+                <Entry key={entry.id} index={index + 1} name={entry.name} description={entry.description} city={entry.city} rating={entry.rating} feature={entry.feature} latitude={entry.latitude} longitude={entry.longitude} url={entry.link}/>
+              ))}
+            </>
+            :
+            <>
+              {entries.map((entry, index) => (
+                <Entry key={entry.id} index={index + 1} name={entry.name} description={entry.description} city={entry.city} rating={entry.rating} feature={entry.feature} latitude={entry.latitude} longitude={entry.longitude} url={entry.link}/>
+              ))}
+            </>
+          }
         </tbody>
       </table>
     </div>
