@@ -109,7 +109,7 @@ function App() {
       <header className="text-mcqueen justify-between w-full px-4 pt-12 pb-16 mx-auto sm:flex max-w-screen-2xl">
         <Hero />
         <div>
-          <button onClick={() => setMenu(true)} className='px-2 py-1 border border-mcqueen hover:bg-mcqueen hover:text-white transition duration-75'>
+          <button onClick={() => setMenu(true)} className='px-2 py-1 border border-mcqueen hover:bg-mcqueen hover:text-white transition duration-150'>
             Submit a Coffee Shop
           </button>
         </div>

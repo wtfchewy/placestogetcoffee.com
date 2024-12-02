@@ -23,7 +23,8 @@ const submitShop = async (social, suggestedSong, shopName, city, country, descri
         country,
         description
         });
-        console.log("Document written with ID: ", docRef.id);
+
+        return docRef.id;
     } catch (e) {
         console.error("Error adding document: ", e);
     }

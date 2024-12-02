@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {submitShop} from '../services/firestore';
 import Close from './Close';
 
@@ -10,6 +10,19 @@ const Menu = ({ setMenu }) => {
     const [country, setCountry] = useState('')
     const [description, setDescription] = useState('')
 
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (!event.target.closest('#menu-container')) {
+          setMenu(false);
+        }
+      };
+  
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, []);
+
     const submit = async () => {
         if (!social || !suggestedSong || !shopName || !city || !country || !description) {
             alert('Please fill out all fields')
@@ -20,8 +33,8 @@ const Menu = ({ setMenu }) => {
     }
 
     return (
-        <div className='absolute w-full h-screen bg-mcqueen/10 flex justify-center items-center'>
-        <div className='w-2/6 p-2 bg-white border-2 border-mcqueen text-mcqueen'>
+      <div className='absolute w-full h-screen bg-mcqueen/10 flex justify-center items-center'>
+        <div id='menu-container' className='w-2/6 p-2 bg-white border-2 border-mcqueen text-mcqueen'>
           <div className='justify-between flex flex-row'>
           <h1 className='text-xl'>About You</h1>
           <button onClick={() => setMenu(false)} className='text-xl'>
@@ -64,7 +77,7 @@ const Menu = ({ setMenu }) => {
             </label>
           </div>
 
-          <button onClick={() => submit()} className='w-full mt-2 px-2 py-1 bg-mcqueen text-white'>
+          <button onClick={() => submit()} className='w-full mt-2 px-2 py-1 bg-mcqueen hover:bg-mcqueen/90 duration-150 text-white'>
             Submit
           </button>
         </div>
